@@ -2,8 +2,6 @@ version: '2'
 services:
   web:
     image: dockercloud/hello-world
-    ports:
-      - 8080
     networks:
       - front-tier
       - back-tier
@@ -16,9 +14,10 @@ services:
       - back-tier
 
   lb:
-    image: dockercloud/haproxy
+    image: dockercloud/haproxy:1.6.2
     ports:
       - 80:80
+      - 1936:1936
     links:
       - web
     networks:
